@@ -1,0 +1,23 @@
+{
+  "name": "music-player",
+  "version": "1.0.0",
+  "description": "A web based music player",
+  "main": "index.js",
+  "scripts": {
+    "test": "cat find a way"
+  },
+  "keywords": [
+    "music",
+    "player"
+  ],
+  "author": "Mohammadreza Moghimi",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "boxicons": "^2.1.4",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-sass": "^5.1.0",
+    "howler": "^2.2.3",
+    "sass": "^1.63.6"
+  }
+}

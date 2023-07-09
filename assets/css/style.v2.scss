@@ -1,0 +1,195 @@
+$disableColor: #bbbbbb;
+$enableColor: #000000;
+
+#amPlayer-1 {
+  direction: rtl;
+}
+
+.amCenter {
+  text-align: center;
+}
+
+#amCover {
+  max-height: 500px;
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.amControllers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  margin: .1em 0;
+  column-gap: .2em;
+  
+  i {
+    font-size: inherit;
+    cursor: pointer;
+    opacity: 1;
+    transition: .2s;
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+}
+
+#amRewind, #amForward {
+  font-size: 40px;
+}
+
+#amTimebar {
+  width: 80%;
+}
+
+.amTimebar, .amVolumebar, #amDurationTime, #amCurrentTime{
+  direction: ltr;
+}
+
+.amVolumebar, .amTimebar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+
+#amVolumebar {
+  width: 60%;
+}
+
+.amExtrabar {
+  font-size: 25px;
+  margin: .2em;
+  display: flex;
+  justify-content: space-between;
+
+  .amExtraBtn {
+    display: flex;
+    column-gap: 12px;
+    justify-content: center;
+    align-items: flex-start;
+
+    i {
+      font-size: inherit;
+      cursor: pointer;
+      color: $disableColor;
+      transition: .2s color;
+
+      &:hover {
+        color: #000 !important;
+      }
+    }
+  }
+
+  #amTitle {
+    font-size: inherit;
+  }
+}
+
+#amPlaylistModal {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 15px;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  z-index: 11;
+  width: 500px;
+  display: none;
+
+  .ampmCloseRow {
+    display: block;
+    width: 100%;
+    text-align: right;
+    height: 10px;
+    margin-bottom: 10px;
+
+    #ampmClose {
+      color: $disableColor;
+      transition: .2s;
+      cursor: pointer;
+      font-size: 25px;
+      padding: 5px 7px;
+
+      &:hover {
+        color: $enableColor;
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 20px;
+
+    li {
+      padding: 10px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      margin: 0;
+      border-radius: 10px;
+      transition: .1s;
+      cursor: pointer;
+
+      &.current {
+        background-color: #ccc;
+      }
+
+      span {
+
+      }
+
+      .ampmMinus {
+        color: $disableColor;
+        transition: .2s;
+        cursor: pointer;
+        font-size: 20px;
+
+        &:hover {
+          color: $enableColor;
+        }
+      }
+
+      &:hover {
+        background-color: #eee;
+      }
+
+    }
+  }
+
+  .ampmController {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px 20px;
+    column-gap: 20px;
+
+    i {
+      font-size: 25px;
+      color: $disableColor;
+      transition: .2s;
+      cursor: pointer;
+
+      &:hover {
+        color: $enableColor;
+      }
+    }
+  }
+
+}
+
+#ampmBg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(26, 27, 38, .6);
+  display: none;
+}
