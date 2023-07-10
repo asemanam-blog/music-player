@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head><!-- {{{ --><!--{{{-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4cb0cf" />
+    <title>Music Player</title>
+    <link href="http://bayanbox.ir/view/2236709331436645041/logo.svg.ico" rel="shortcut icon">
+    <link rel="icon" sizes="300x100" href="http://bayanbox.ir/download/5511823367774169635/logo.svg.png">
+    <link rel="apple-touch-icon" type="image/png" href="http://bayanbox.ir/download/5511823367774169635/logo.svg.png">
+    <link rel="mask-icon" href="http://bayanbox.ir/download/4909477435890609283/logo.svg">
+    <!-- <link rel="stylesheet" href="https://bayanbox.ir/download/8163244990411912056/asemanam.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
+    <style>
+      *, :before, :after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        max-width: 1024px;
+        margin: 10px auto;
+      }
+    </style>
+  </head> <!-- }}} --><!--}}}-->
+
+  <body>
+
+    <link rel="stylesheet" href="https://bayanbox.ir/download/6078991219448784285/boxicons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+
+    <div class="container">
+      <div class="amPlayer-container">
+        <div id="amPlayer-1" class="amCenter">
+          <img id="amCover" alt="cover">
+
+          <div class="amExtrabar">
+            <div class="amExtraBtn">
+              <i id="amPlaylistBtn" class='bx bxs-playlist'></i>
+              <i id="amShuffleBtn" class='bx bx-shuffle' ></i>
+              <i id="amLoopBtn" class='bx bx-repost'></i>
+            </div>
+            <div id="amTitle"> Title of the music </div>
+          </div>
+
+          <div class="amTimebar">
+            <div id="amCurrentTime">00:00</div>
+            <input type="range" id="amTimebar" min="0" max="100" value="0" oninput="jamTimebarfunc()" style="--min: 0; --max: 100; --val: 0"/>
+            <div id="amDurationTime">00:00</div>
+          </div>
+
+          <div class="amControllers">
+            <i id="amNext" class='bx bx-skip-next' ></i>
+            <i id="amForward" class='bx bx-fast-forward' ></i>
+            <i id="amPlay" class='bx bx-play-circle'></i>
+            <i id="amRewind" class='bx bx-rewind' ></i>
+            <i id="amPrevious" class='bx bx-skip-previous' ></i>
+          </div>
+
+          <div class="amVolumebar">
+            <i id="amVolumeDown" class='bx bxs-volume' ></i>
+            <input type="range" id="amVolumebar" min="0" max="100" value="50" oninput="jamVolumebarfunc()" style="--min: 0; --max: 100; --val: 100"/>
+            <i id="amVolumeUp" class='bx bxs-volume-full'></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="amPlaylistModal"> <ul></ul> </div> <div id="ampmBg"></div>
+
+
+
+    <script src="https://bayanbox.ir/download/1383958029223729435/howler.min.js"></script>
+    <script src="./script-player.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,398 @@
+<html lang="fa">
+<head><!--{{{-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4cb0cf" />
+  <title>Asemany Music player Version 1.0</title>
+  <link href="http://bayanbox.ir/view/2236709331436645041/logo.svg.ico" rel="shortcut icon">
+  <link rel="icon" sizes="300x100" href="http://bayanbox.ir/download/5511823367774169635/logo.svg.png">
+  <link rel="apple-touch-icon" type="image/png" href="http://bayanbox.ir/download/5511823367774169635/logo.svg.png">
+  <link rel="mask-icon" href="http://bayanbox.ir/download/4909477435890609283/logo.svg">
+  <link rel="stylesheet" href="https://asemanam.blog.ir/static/1FeXS9w7y-s/1558509469/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <style>
+    *, :before, :after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1024px;
+      margin: 10px auto;
+    }
+  </style>
+</head><!--}}}-->
+
+  <body dir="rtl">
+
+    <section class="container">
+      <!-- style --><!--{{{-->
+      <style>
+          html {
+            scroll-behavior: smooth;
+          }
+
+        .themePart {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-flow: row wrap;
+          row-gap: 2em;
+          margin-bottom: 2em;
+        }
+
+        .themePreview img {
+          max-height: 600px;
+        }
+
+        .form-group.themePicker {
+          display: flex;
+          flex-flow: column wrap;
+          row-gap: 4em;
+          font-size: 25px;
+        }
+
+        .themePicker label {
+          cursor: pointer;
+        }
+
+        .btn.btn-primary.w-100.d-block, .btn.btn-success.w-100.d-block.copymim {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          column-gap: 5px;
+        }
+
+      </style><!--}}}-->
+      <!-- Tool's Title --><!--{{{-->
+    <h4 class="w-100 text-center mimenu" style="color: white; background-color: #8e44ad;padding: .5em; border-radius: .5em; border-top-right-radius: 1em; border-top-left-radius: 1em; margin-bottom: 1em; direction: rtl;">
+      <!-- <a href="http://asemanam.blog.ir/post/209" target="_blank"> -->
+      ابزار پلیر یا پخش کننده موزیک آسمانی
+      <!-- </a> -->
+    </h4>
+      <!-- Tool's Title --><!--}}}-->
+      <script src="https://bayanbox.ir/download/6442148608199602252/basil.min.js"></script>
+      <!-- Structure of the tool --><!--{{{-->
+      <div class="themePart">
+
+        <div class="form-group themePicker">
+          <label class="form-radio">
+            <input id="darkTheme" type="radio" name="theme" checked>
+            <i class="form-icon"></i> حالت تاریک
+          </label>
+          <label class="form-radio">
+            <input id="lightTheme" type="radio" name="theme">
+            <i class="form-icon"></i> حالت روشن
+          </label>
+        </div>
+
+        <div class="themePreview">
+          <img id="themeCover" src="https://s29.picofile.com/file/8465669518/darkTheme.png" alt="dark theme music player">
+        </div>
+
+      </div>
+
+      <div class="playlistPart">
+
+        <div id="gooPlaylistDialog"> </div>
+        <button id="gooAddMusic" class="btn btn-lg btn-light" style="margin-top: 1em;width: 50px;height: 50px;border-radius: 50%;box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 2px 5px 0 rgba(0,0,0,0.12) !important;position: relative;right: 1em;">
+            <i id="abtAdd" class="icon icon-plus"></i>
+        </button>
+
+        <button id="generating" class="btn btn-primary w-100 d-block" style="margin-top: 1em; margin-bottom: 1em; border-radius: 200em;">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA0ElEQVRIid2VQRGEMAxFkYCESkBCJSABJyAFB+CkOFicvL0kM5ndUgIsB/Zf+cnrpL+hqv5WQAQmRJnvqgmIR5t3fKgAUHXe5sEUDUBd8NbiUQUPYBTz6DrR0RpgFXNzANBIzctjzs78Z3W3AoBWfOsJgI623TIEIGl6TgA0TSmbJhO1pRTNAqCW2vyoDCBdAKQSIJgTDCcAOqJl88GZS97P83etXnLcMz74HYjxyqpYPebbl51d130pshLN3viD90T3/XBMgwjMDsC8G81H6w3McglZDqXwugAAAABJRU5ErkJggg==">
+          تولید کد 
+        </button>
+
+        <div id="preview"></div>
+        <textarea spellcheck="false" onclick="javascript: this.select();" id="generatedCode" class="w-100" name="gc" cols="30" rows="5" style="direction: ltr;"></textarea>
+        <button class="btn btn-success w-100 d-block copymim" style="margin-bottom: 1em; border-bottom-left-radius: 2em;border-bottom-right-radius: 2em;" mimr-clipboard-target="#generatedCode">کپی کد
+          <img style="margin-left: .3em;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAc0lEQVRIid3UwQ3AIAiFYUfpKIzeTWSEbvD31vSgBjCm1HcWPqOEUrYPIEDFngqIB1BH8wfxAKHkAQwXOIBzGfBCxgCT02IBpqbFAoSSFxh86E8Aazr1uhJQWsuuVxg99z3gfaIUwBXorx5A8O2j9rRslxs69C8j+kxQagAAAABJRU5ErkJggg==">
+        </button>
+
+
+      </div>
+<!--}}}-->
+      <!-- Infile script --><!--{{{-->
+      <script src="https://bayanbox.ir/download/4395638023237594655/clipboard.min.js"></script>
+      <script>
+        new ClipboardJS('.copymim');
+        // Get elements{{{
+        const themePickerLight = document.getElementById('lightTheme');
+        const themePickerDark = document.getElementById('darkTheme');
+        const themeCoverImage = document.getElementById('themeCover');
+        const gooAddMusic = document.getElementById('gooAddMusic');
+        const gooAllDialogue = document.getElementById('gooPlaylistDialog');
+        const generateBtn = document.getElementById('generating');
+        const preview = document.getElementById('preview');
+
+        if (darkThemeCheck()) {
+          themeCoverImage.setAttribute('src', 'https://s29.picofile.com/file/8465669518/darkTheme.png');
+        } else {
+          themeCoverImage.setAttribute('src', 'https://s29.picofile.com/file/8465669526/lightTheme.png');
+        }
+        //}}}
+
+        // Variables{{{
+        var musicIndexList = [];
+        var musicRemovedList = [];
+        var musicIndex = 1;
+        var generateTrigger = 1;
+
+        // If we have local storage index
+        if (Basil.localStorage.get('musicIndexListLocal')) {
+          musicIndexList = Basil.localStorage.get('musicIndexListLocal').split(',');
+          // Turn strings to number
+          for (let i = 0; i < musicIndexList.length; i++) {
+            musicIndexList[i] = Number(musicIndexList[i]);
+          }
+
+          for (let j = 0; j < musicIndexList.length; j++) {
+            let music = Basil.localStorage.get('music-' + musicIndexList[j]).split(',');
+            musicAdd(music[0], music[1], music[2], music[3], musicIndexList[j]);
+          }
+          // Set the latest index number
+          musicIndex = musicIndexList[musicIndexList.length -1] + 1;
+        } else {
+          musicAdd();
+          musicIndexList = [1];
+        }  
+        //}}}
+        // Events{{{
+        themePickerDark.addEventListener('change', () => {
+          themeCoverImage.setAttribute('src', 'https://s29.picofile.com/file/8465669518/darkTheme.png');
+        });
+
+        themePickerLight.addEventListener('change', () => {
+          themeCoverImage.setAttribute('src', 'https://s29.picofile.com/file/8465669526/lightTheme.png');
+        });
+
+        gooAddMusic.addEventListener('click', () => {
+          musicAdd();
+        });
+
+        generateBtn.addEventListener('click', () => {
+          codeGenerating();
+        });
+        //}}}
+        // Functions{{{
+        // check darkTheme is set or not{{{
+        function darkThemeCheck() {
+          if (themePickerDark.checked) {
+            return true;
+          } else if (themePickerLight.checked) {
+            return false;
+          }
+        }
+        // }}}
+        // Music deletion functionality{{{
+        function musicDel(num) {
+          let index = num;
+          let id = 'gooItem-' + index;
+          document.getElementById(id).remove();
+          musicIndexList.splice(musicIndexList.indexOf(index), 1);
+          musicRemovedList.push(index);
+        }
+        //}}}
+        // Add music dialogue{{{
+        function musicAdd(title, artist, cover, url, index) {
+          if (title) {
+            let ider = 'gooItem-' + index;
+            let elementer = document.createElement('div');
+            elementer.setAttribute('id', ider);
+            elementer.classList.add('columns');
+            elementer.style.width = "100%";
+            elementer.style.marginBottom = "1em";
+            elementer.innerHTML = `<div class="column col-1">
+                <button onclick="musicDel(${index})" id="playlistDel-${index}" class="btn btn-light" style=" width: 35px; height: 35px; border-radius: 50%; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12) !important; position: relative; bottom: 1em; ">
+                  <i class="icon icon-minus"></i>
+                </button>
+              </div>
+              <div class="column col-11" style=" border: 1px solid rgb(107, 105, 221); border-radius: 1em; box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 2px 5px 0px !important; padding: 1em; background-color: rgb(250, 250, 250); margin-bottom: 2em; " >
+                <div class="columns">
+                  <div class="column col-6 col-sm-12">
+                    <label for="gooTitleText-${index}" style="margin-top: 1em"> عنوان موزیک: </label>
+                    <input value="${title}" id="gooTitleText-${index}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em" placeholder="Love Story" />
+                  </div>
+                  <div class="column col-6 col-sm-12">
+                    <label for="gooArtistText-${index}" style="margin-top: 1em"> هنرمند (By): </label>
+                    <input value="${artist}" id="gooArtistText-${index}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em" placeholder="Taylor Swift" />
+                  </div>
+                  <div class="column col-12">
+                    <label for="gooAddressCover-${index}" style="margin-top: 1em"> آدرس تصویر کاور: </label>
+                    <input value="${cover}" id="gooAddressCover-${index}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em; text-align: left" placeholder="https://example.com/cover.jpg" />
+                  </div>
+
+                  <div class="column col-12">
+                    <label for="gooAddressFile-${index}" style="margin-top: 1em"> آدرس فایل موزیک: </label>
+                    <input value="${url}" id="gooAddressFile-${index}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em; text-align: left" placeholder="https://example.com/music.mp3" />
+                  </div>
+                </div>
+              </div>`;
+            gooAllDialogue.appendChild(elementer);
+          } else {
+            let ider = 'gooItem-' + musicIndex;
+            let elementer = document.createElement('div');
+            elementer.setAttribute('id', ider);
+            elementer.classList.add('columns');
+            elementer.style.width = "100%";
+            elementer.style.marginBottom = "1em";
+            elementer.innerHTML = `<div class="column col-1">
+                <button onclick="musicDel(${musicIndex})" id="playlistDel-${musicIndex}" class="btn btn-light" style=" width: 35px; height: 35px; border-radius: 50%; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12) !important; position: relative; bottom: 1em; ">
+                  <i class="icon icon-minus"></i>
+                </button>
+              </div>
+              <div class="column col-11" style=" border: 1px solid rgb(107, 105, 221); border-radius: 1em; box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 2px 5px 0px !important; padding: 1em; background-color: rgb(250, 250, 250); margin-bottom: 2em; " >
+                <div class="columns">
+                  <div class="column col-6 col-sm-12">
+                    <label for="gooTitleText-${musicIndex}" style="margin-top: 1em"> عنوان موزیک: </label>
+                    <input id="gooTitleText-${musicIndex}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em" placeholder="Love Story" />
+                  </div>
+                  <div class="column col-6 col-sm-12">
+                    <label for="gooArtistText-${musicIndex}" style="margin-top: 1em"> هنرمند (By): </label>
+                    <input id="gooArtistText-${musicIndex}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em" placeholder="Taylor Swift" />
+                  </div>
+                  <div class="column col-12">
+                    <label for="gooAddressCover-${musicIndex}" style="margin-top: 1em"> آدرس تصویر کاور: </label>
+                    <input id="gooAddressCover-${musicIndex}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em; text-align: left" placeholder="https://example.com/cover.jpg" />
+                  </div>
+
+                  <div class="column col-12">
+                    <label for="gooAddressFile-${musicIndex}" style="margin-top: 1em"> آدرس فایل موزیک: </label>
+                    <input id="gooAddressFile-${musicIndex}" type="text" class="form-input d-block" style="margin-bottom: 1em; margin-top: 0.5em; text-align: left" placeholder="https://example.com/music.mp3" />
+                  </div>
+                </div>
+              </div>`;
+            gooAllDialogue.appendChild(elementer);
+            musicIndexList.push(musicIndex);
+            musicIndex++;
+          }
+        }
+        //}}}
+        // Code generating{{{
+          function codeGenerating() {
+            let coder = " ";
+            const styleDark = `<link rel="stylesheet" href="https://bayanbox.ir/download/219036516129897925/style-dark.css">\n`;
+            const styleLight = `<link rel="stylesheet" href="https://bayanbox.ir/download/824171343778430879/style-light.css">\n`;
+            const scriptDark = `<script src="https://bayanbox.ir/download/4890531145765981560/script-player-dark.js"></` + `script>`;
+            const scriptLight = `<script src="https://bayanbox.ir/download/5916914701999809717/script-player-light.js"></` + `script>\n`;
+
+            if (generateTrigger == 1) {
+              Basil.localStorage.reset();
+              generateTrigger++;
+            } else if(musicRemovedList.length) {
+              for (let i = 0; i < musicRemovedList.length; i++) {
+                if (Basil.localStorage.get('music-' + musicRemovedList[i])) {
+                  Basil.localStorage.remove('music-' + musicRemovedList[i]);
+                }
+              }
+            }
+            for(let i = 0; i < musicIndexList.length; i++) {
+              let title = document.getElementById('gooTitleText-' + musicIndexList[i]).value;
+              let artist = document.getElementById('gooArtistText-' + musicIndexList[i]).value;
+              let cover = document.getElementById('gooAddressCover-' + musicIndexList[i]).value;
+              let url = document.getElementById('gooAddressFile-' + musicIndexList[i]).value;
+
+              if(!(title)) title = 'Example';
+              if(!(artist)) artist = 'Example';
+              if(!(cover)) cover = 'https://s29.picofile.com/file/8465671442/AsemanamCover.jpg';
+              if(!(url)) url = 'https://uploadkon.ir/uploads/7e8909_23Klaus-Badelt-Hes-a-Pirate-musicgeek-ir.mp3';
+
+              let arran = [title, artist, cover, url];
+              Basil.localStorage.set('music-' + musicIndexList[i], arran.toString());
+            }
+
+            Basil.localStorage.set('musicIndexListLocal', musicIndexList.toString());
+
+            coder += `<link rel="stylesheet" href="https://bayanbox.ir/download/6078991219448784285/boxicons.css" />
+            <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet" />
+            <style>
+            #ampmBg {
+              position: fixed !important;
+            }
+            #amPlaylistModal {
+              position: fixed !important;
+            }
+            @media screen and (max-width: 500px) { #amPlaylistModal { width: 300px !important; } } #amDurationTime, #amCurrentTime { word-break: keep-all !important; }
+            </style>
+            <div class="container">
+              <div class="amPlayer-container">
+                <div id="amPlayer-1" class="amCenter">
+                  <img id="amCover" src="https://uploadkon.ir/uploads/7e8909_23Klaus-Badelt-Hes-a-Pirate-musicgeek-ir.mp3" alt="cover" />
+
+                  <div class="amExtrabar">
+                    <div class="amExtraBtn">
+                      <i id="amPlaylistBtn" class="bx bxs-playlist"></i>
+                      <i id="amShuffleBtn" class="bx bx-shuffle"></i>
+                      <i id="amLoopBtn" class="bx bx-repost"></i>
+                    </div>
+                    <div id="amTitle">Title of the music</div>
+                  </div>
+
+                  <div class="amTimebar">
+                    <div id="amCurrentTime">00:00</div>
+                    <input type="range" id="amTimebar" min="0" max="100" value="0" oninput="jamTimebarfunc()" style="--min: 0; --max: 100; --val: 0" />
+                    <div id="amDurationTime">00:00</div>
+                  </div>
+
+                  <div class="amControllers">
+                    <i id="amNext" class="bx bx-skip-next"></i>
+                    <i id="amForward" class="bx bx-fast-forward"></i>
+                    <i id="amPlay" class="bx bx-play-circle"></i>
+                    <i id="amRewind" class="bx bx-rewind"></i>
+                    <i id="amPrevious" class="bx bx-skip-previous"></i>
+                  </div>
+
+                  <div class="amVolumebar">
+                    <i id="amVolumeDown" class="bx bxs-volume"></i>
+                    <input type="range" id="amVolumebar" min="0" max="100" value="50" oninput="jamVolumebarfunc()" style="--min: 0; --max: 100; --val: 100" />
+                    <i id="amVolumeUp" class="bx bxs-volume-full"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="amPlaylistModal"><ul></ul></div>
+            <div id="ampmBg"></div>
+            <script src="https://bayanbox.ir/download/1383958029223729435/howler.min.js"></` + `script>\n`;
+
+            if (darkThemeCheck()) {
+              coder += styleDark;
+            } else {
+              coder += styleLight;
+            }
+
+            coder += '<script> var jamPlaylist = [\n';
+
+            for (let j = 0; j < musicIndexList.length; j++) {
+              let music = Basil.localStorage.get('music-' + musicIndexList[j]).split(',');
+
+              coder += '{';
+              coder += 'title: "' + music[0] + '",';
+              coder += 'artist: "' + music[1] + '",';
+              coder += 'cover: "' + music[2] + '",';
+              coder += 'url: "' + music[3] + '",';
+              coder += '},';
+
+            }
+
+            coder += ']; </' + 'script>\n';
+
+
+            if (darkThemeCheck()) {
+              coder += scriptDark;
+            } else {
+              coder += scriptLight;
+            }
+
+            preview.scrollIntoView();
+            document.getElementById('generatedCode').value = coder;
+          }
+        //}}}
+        //}}}
+      </script><!--}}}-->
+    </section>
+
+  </body>
+
+  </html>
