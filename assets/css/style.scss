@@ -363,3 +363,5 @@ $thumb-c: $enableColor;
   background-color: rgba(26, 27, 38, .6);
   display: none;
 }
+
+@media screen and (max-width: 500px) { #amPlaylistModal { width: 300px; } } #amDurationTime, #amCurrentTime { word-break: keep-all; }
